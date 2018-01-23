@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>hw</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="main">
+      <div id="container">
+        <div id="content" role="main">
+
+          <header>
+            <a href="http://www.epam.com/"><img src="EPAM_logo.svg" alt="Логотип"></a>
+          </header>
+
+          <nav>
+            <a href="#html"><b>HTML</b></a>
+            <a href="#list"><b>List</b></a>
+            <a href="#table"><b>Table</b></a>
+            <a href="#textFormats"><b>Text formats</b></a>
+            <a href="#blockquotes"><b>Blockquotes</b></a>
+          </nav>
+
+          <hr>
+
+          <!--HTML елементи-->
+          <article id="html">
+            <h1><b>HTML Elements</b></h1>
+          </article>
+
+          <hr>
+
+          <article id="list">
+          <!--Непронумерований список-->
+            <h1>Ordered List</h1>
+            <ul>
+              <li>
+                <h1>Heading 1</h1>
+              </li>
+              <ul>
+                <li>
+                  <h2>Heading 2</h2>
+                </li>
+                <ul>
+                  <li>
+                    <h3>Heading 3</h3>
+                  </li>
+                </ul>
+              </ul>
+            </ul>
+          <!--Пронумерований список-->
+            <ol>
+              <li>
+                <h4>Heading 4</h4>
+              </li>
+              <ol>
+                <li>
+                  <h5>Heading 5</h5>
+                </li>
+                <ol>
+                  <li>
+                    <h6>Heading 6</h6>
+                  </li>
+                </ol>
+              </ol>
+            </ol>
+          <!--Терміни та їх визначення-->
+            <h3>Definition List</h3>
+            <dl>
+              <dt>defines terms 1</dt>
+                <dd>description 1</dd>
+              <dt>defines terms 2</dt>
+                <dd>description 2</dd>
+            </dl>
+          <!--Деталі-->
+            <h1>Details</h1>
+            <details open="open">
+              <summary>Even more details open</summary>
+              Here are even more details about the details.
+            </details>
+            <details>
+              <summary>Even more details close</summary>
+              Here are even more details about the details.
+            </details>
+          </article>
+
+          <hr>
+
+          <article id="table">
+          <!--Таблиця-->
+            <h2>Table</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Elements</th>
+                  <th>Elements</th>
+                  <th>Elements</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Strong</strong></td>
+                  <td>H<sub>2</sub>O</td>
+                  <td><a href="https://uk.wikipedia.org/wiki/%D0%9F%D0%BE%D1%81%D0%B8%D0%BB%D0%B0%D0%BD%D0%BD%D1%8F">Test link</a></td>
+                </tr>
+                <tr>
+                  <td><i>Italic</i></td>
+                  <td><u>Underline.</u></td>
+                  <td><del>Delete</del></td>
+                </tr>
+                <tr>
+                  <td><abbr>Abbreviation</abbr></td>
+                  <td>5<sup>3</sup>=125</td>
+                  <td><ins>Inserted</ins></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <hr>
+
+          <article id="textFormats">
+            <h2>Text formats</h2>
+          <!--Семантична область-->
+              <h3>Article Text</h3>
+                <article>
+                  <p><h1>Article title</h1></p>
+                  <p>Article description</p>
+                </article>
+          <!--Машинний текст-->
+            <h3>Preformatted Text</h3>
+              <pre>
+Text
+  in a pre element
+    is displayed in a fixed-width
+font, and it preserves
+both           spaces and
+    line breaks
+              </pre>
+          <!--Код-->
+            <h3>Code</h3>
+              <pre>
+                <code>
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+                </code>
+              </pre>
+          </article>
+
+          <hr>
+
+          <article id="blockquotes">
+          <!--Цитата-->
+            <h2>Blockquotes</h2>
+            <p>Let’s keep it simple. Italics are good to help set it off from the body text. Be sure to style the citation.</p>
+            <blockquote>
+              <p>
+                Technology is nothing. What's important is that you have a faith in people, that they're basically good and smart, and if you give them tools, they'll do wonderful things with them.<br><a href="https://uk.wikipedia.org/wiki/%D0%A1%D1%82%D1%96%D0%B2_%D0%94%D0%B6%D0%BE%D0%B1%D1%81">Steve Jobs</a></p>
+            </blockquote>
+          <!--Атирибут "hidden"-->
+            <p hidden>And here’s a bit of trailing text.</p>
+          </article>
+
+          <footer>Copyright Epam Systems</footer>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
