@@ -15,9 +15,13 @@ $border: 1px solid $white;
 @mixin leftFloat{ float: left; }
 @mixin rightFloat{ float: right; }
 @mixin rightMargin{ margin: 0 10px 10px 0; }
-@mixin borderColor($width: 2px, $color: $accentColor){
-	border: $width solid $color;
+@mixin borderColor($width: 2px, $color: $accentColor){ border: $width solid $color; }
+@mixin style1{
+	width: 40%;
+	@include rightMargin;
+	@include leftFloat;
 }
+@mixin style2{ margin-bottom: 20px; }
 
 body{
 	background-color: $backgroundColor;
@@ -54,6 +58,9 @@ a{
 .brief{
 	background-color: $divColor;
 	padding: 20px;
+	@if $textColor == #000000{
+		@include style2;
+	} @else {@include style1;}
 }
 input, textarea{
 	width: 100%;

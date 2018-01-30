@@ -1,8 +1,2 @@
 @import "variables1";
 @import "main";
-
-.brief{
-	width: 40%;
-	@include rightMargin;
-	@include leftFloat;
-}
