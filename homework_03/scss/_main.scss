@@ -1,0 +1,110 @@
+$backgroundColor: null !default;
+$divColor: null !default;
+$mainColor: null !default;
+$accentColor: null !default;
+$textColor: #fff !default;
+$linkColor: null !default;
+$textFormColor: #f5c70f !default;
+$tableTitleColor: null !default;
+$tableContentColor: #fff !default;
+
+$black: #000;
+$white: #fff;
+$border: 1px solid $white;
+
+@mixin leftFloat{ float: left; }
+@mixin rightFloat{ float: right; }
+@mixin rightMargin{ margin: 0 10px 10px 0; }
+@mixin borderColor($width: 2px, $color: $accentColor){
+	border: $width solid $color;
+}
+
+body{
+	background-color: $backgroundColor;
+}
+#content{
+	background-color: $mainColor;
+	margin: 0 12%;
+	padding: 20px;
+}
+h1, h2{
+	color: $accentColor;
+}
+h1{
+	text-align:center;
+}
+p, table{
+	color: $textColor;
+}
+img{
+	@include borderColor;
+	padding: 2px;
+}
+a{
+	color: $linkColor;
+}
+.img-left{
+	@include leftFloat;
+	@include rightMargin;
+}
+.img-right{
+	@include rightFloat;
+	margin: 0 0 10px 10px;
+}
+.brief{
+	background-color: $divColor;
+	padding: 20px;
+}
+input, textarea{
+	width: 100%;
+	padding: 5px;
+}
+.firstName{
+	@include leftFloat;
+	width: 49%;
+}
+.lastName{
+	@include rightFloat;
+	width: 49%;
+}
+table{
+	background-color: $tableContentColor;
+	border-spacing: 0;
+	margin-bottom: 20px;
+	caption{
+		text-align: right;
+		color: $black;
+	}
+	tr{
+		margin-top: 0;
+		th, td{
+			padding: 10px;
+		}
+		th{
+			background-color: $tableTitleColor;
+			color: $black;
+			text-align: left;
+			text-transform: uppercase;
+			font-weight: normal;
+			&:not(:first-child){ border-left: $border;}
+		}
+		td{ border-bottom: $border;}
+	}
+}
+label{
+	color: $textFormColor;
+}
+.inputText{
+	input, textarea{
+		margin: 5px 0 10px 0;
+		color: lighten( $black, 40%);
+	}
+}
+input[type="button"]{
+	width: 30%;
+	height: 50px;
+	background-color: $mainColor;
+	@include borderColor(2px, $linkColor);
+	color: $linkColor;
+	font-size: medium;
+}

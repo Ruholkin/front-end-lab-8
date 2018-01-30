@@ -1,0 +1,89 @@
+body {
+  background-color: #dcbb9a; }
+
+#content {
+  background-color: #ffffff;
+  margin: 0 12%;
+  padding: 20px; }
+
+h1, h2 {
+  color: #893c00; }
+
+h1 {
+  text-align: center; }
+
+p, table {
+  color: #000000; }
+
+img {
+  border: 2px solid #893c00;
+  padding: 2px; }
+
+a {
+  color: #3d70a1; }
+
+.img-left {
+  float: left;
+  margin: 0 10px 10px 0; }
+
+.img-right {
+  float: right;
+  margin: 0 0 10px 10px; }
+
+.brief {
+  background-color: #fadcba;
+  padding: 20px; }
+
+input, textarea {
+  width: 100%;
+  padding: 5px; }
+
+.firstName {
+  float: left;
+  width: 49%; }
+
+.lastName {
+  float: right;
+  width: 49%; }
+
+table {
+  background-color: #fff;
+  border-spacing: 0;
+  margin-bottom: 20px; }
+  table caption {
+    text-align: right;
+    color: #000; }
+  table tr {
+    margin-top: 0; }
+    table tr th, table tr td {
+      padding: 10px; }
+    table tr th {
+      background-color: #e0e0e0;
+      color: #000;
+      text-align: left;
+      text-transform: uppercase;
+      font-weight: normal; }
+      table tr th:not(:first-child) {
+        border-left: 1px solid #fff; }
+    table tr td {
+      border-bottom: 1px solid #fff; }
+
+label {
+  color: #808080; }
+
+.inputText input, .inputText textarea {
+  margin: 5px 0 10px 0;
+  color: #666666; }
+
+input[type="button"] {
+  width: 30%;
+  height: 50px;
+  background-color: #ffffff;
+  border: 2px solid #3d70a1;
+  color: #3d70a1;
+  font-size: medium; }
+
+.brief {
+  width: 40%;
+  margin: 0 10px 10px 0;
+  float: left; }

@@ -1,0 +1,87 @@
+body {
+  background-color: rgba(198, 238, 252, 0.53); }
+
+#content {
+  background-color: #3b3b3b;
+  margin: 0 12%;
+  padding: 20px; }
+
+h1, h2 {
+  color: #fccd10; }
+
+h1 {
+  text-align: center; }
+
+p, table {
+  color: #fff; }
+
+img {
+  border: 2px solid #fccd10;
+  padding: 2px; }
+
+a {
+  color: #f5c70f; }
+
+.img-left {
+  float: left;
+  margin: 0 10px 10px 0; }
+
+.img-right {
+  float: right;
+  margin: 0 0 10px 10px; }
+
+.brief {
+  background-color: #fff178;
+  padding: 20px; }
+
+input, textarea {
+  width: 100%;
+  padding: 5px; }
+
+.firstName {
+  float: left;
+  width: 49%; }
+
+.lastName {
+  float: right;
+  width: 49%; }
+
+table {
+  background-color: #677d01;
+  border-spacing: 0;
+  margin-bottom: 20px; }
+  table caption {
+    text-align: right;
+    color: #000; }
+  table tr {
+    margin-top: 0; }
+    table tr th, table tr td {
+      padding: 10px; }
+    table tr th {
+      background-color: #94a34e;
+      color: #000;
+      text-align: left;
+      text-transform: uppercase;
+      font-weight: normal; }
+      table tr th:not(:first-child) {
+        border-left: 1px solid #fff; }
+    table tr td {
+      border-bottom: 1px solid #fff; }
+
+label {
+  color: #f5c70f; }
+
+.inputText input, .inputText textarea {
+  margin: 5px 0 10px 0;
+  color: #666666; }
+
+input[type="button"] {
+  width: 30%;
+  height: 50px;
+  background-color: #3b3b3b;
+  border: 2px solid #f5c70f;
+  color: #f5c70f;
+  font-size: medium; }
+
+.brief {
+  margin-bottom: 20px; }
