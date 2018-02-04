@@ -1,0 +1,172 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  min-width: 900px;
+  margin: 0;
+  background-color: #F3F3F3;
+  color: #FFF; }
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; }
+  .headerTop p {
+    letter-spacing: 3px; }
+
+ul {
+  list-style-type: none; }
+  ul li {
+    display: inline;
+    padding: 0 15px;
+    width: 100%; }
+    ul li:hover {
+      border-bottom: 1px solid #B7C8D9; }
+
+header {
+  height: 740px;
+  background-image: url("../img/apples.jpg");
+  background-position: center;
+  background-size: cover; }
+  header a {
+    color: #FFF;
+    text-decoration: none;
+    padding-bottom: 20px; }
+
+nav {
+  right: 0; }
+
+.content {
+  width: 80%;
+  margin: auto; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
+
+.hearts {
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #FFF;
+  position: absolute;
+  top: 10px;
+  right: 10px; }
+  .hearts:after {
+    content: "\2764"; }
+
+.blackWhite {
+  margin-top: 220px;
+  text-align: center; }
+  .blackWhite input {
+    margin: 175px;
+    padding: 15px 70px;
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #FFF; }
+
+.blackWhiteText {
+  font-size: 300%;
+  margin: 0;
+  letter-spacing: 5px; }
+  .blackWhiteText:after {
+    content: "\2122"; }
+
+.ampersand {
+  font-size: 150%; }
+
+.originalBrand {
+  font-size: 80%; }
+
+.loremText {
+  display: flex;
+  width: 100%;
+  background-color: #FFF;
+  color: #000;
+  padding: 50px 0; }
+  .loremText .left {
+    width: 43%;
+    padding: 20px; }
+  .loremText .right {
+    font-size: 70%;
+    width: 43%;
+    padding: 20px; }
+
+.featuredArticles {
+  margin-top: 50px; }
+  .featuredArticles p:first-child {
+    color: #000;
+    text-align: center;
+    padding: 30px 0; }
+
+.pictures {
+  display: inline-block;
+  width: 100%; }
+  .pictures img {
+    border: 1px solid #FFF;
+    width: 100%; }
+  .pictures div:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: -1px;
+    bottom: 5px;
+    height: 40%;
+    z-index: 10;
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.01) 1%, rgba(0, 0, 0, 0.5) 100%);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.01) 1%, rgba(0, 0, 0, 0.5) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.01) 1%, rgba(0, 0, 0, 0.5) 100%); }
+  .pictures div:nth-of-type(1) {
+    position: relative;
+    width: 66%;
+    float: left; }
+  .pictures div:nth-of-type(2) {
+    position: relative;
+    width: 32%;
+    float: right; }
+  .pictures div:nth-of-type(3) {
+    position: relative;
+    width: 32%;
+    float: left; }
+  .pictures div:nth-of-type(4) {
+    position: relative;
+    width: 66%;
+    float: right; }
+
+.data {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  z-index: 20; }
+
+.subscribeArticle {
+  background-color: #FFF;
+  color: #000;
+  padding: 20px; }
+  .subscribeArticle label {
+    width: 30%; }
+  .subscribeArticle .inputText {
+    width: 50%; }
+
+.tips {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 50px 20px 20px 20px; }
+  .tips p:first-child {
+    color: #000; }
+  .tips div:nth-of-type(1) {
+    width: 22%; }
+  .tips div:nth-of-type(2) {
+    width: 22%; }
+  .tips div:nth-of-type(3) {
+    width: 22%; }
+  .tips div:nth-of-type(4) {
+    width: 22%; }
+
+footer p {
+  color: #E8E8E8; }
+footer a {
+  color: #000;
+  text-decoration: none; }
+
+/*# sourceMappingURL=style.css.map */
