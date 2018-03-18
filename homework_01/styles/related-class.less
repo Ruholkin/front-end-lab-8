@@ -1,0 +1,31 @@
+@colors: @red, @blue, @orange, @green;
+
+.related-class{
+	margin-bottom: 40px;
+	& > div {
+		margin-top: 20px;
+	}
+	.loop(@colors; 1);
+	img{
+		width: 100%;
+	}
+	h6{
+		color: #fff;
+		text-align: center;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+
+	//less loop. Takes array with colors and counter
+	.loop(@colors; @counter) when (@counter < length(@colors) + 1) {
+		//retrieve the right color in the loop
+		@colorExtr: extract(@colors, @counter);
+		//generate the css rule
+		& div:nth-child(@{counter}) div{
+			background-color: @colorExtr;
+			border: 1px solid @colorExtr;
+		}
+		//next iteration
+		.loop(@colors; (@counter + 1));
+	}
+}

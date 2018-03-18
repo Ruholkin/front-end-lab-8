@@ -1,0 +1,28 @@
+.navbar{
+	padding-top: 0;
+	padding-bottom: 0;
+	&-light .navbar-nav .active{
+		background-color: @blue;
+		&>.nav-link{
+			color: #fff;
+		}
+	}
+}
+h1,h3{
+	color: @blue;
+	font-weight: bold;
+}
+hr{
+	border-top: 1px solid @blue;
+}
+footer{
+	padding: 5px;
+	background-color: @grey;
+	p{
+		color: #fff;
+		margin: 10px 0;
+		&::before{
+			content: "\00A9   " ;
+		}
+	}
+}
