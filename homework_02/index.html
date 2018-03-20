@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lesson 15. Performance Optimization</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div id="content">
+            <h1>Best online shop ever</h1>
+            <section class="slider">
+                <div class="flexslider">
+                  <ul class="slides">
+                    <li><a href="#"><img src="img/slides/slide-1.jpg" /></a></li>
+                    <li><a href="#"><img src="img/slides/slide-2.jpg" /></a></li>
+                    <li><a href="#"><img src="img/slides/slide-3.jpg" /></a></li>
+                    <li><a href="#"><img src="img/slides/slide-4.jpg" /></a></li>
+                  </ul>
+                </div>
+            </section>
+
+            <p>Made by famous brands such as Nike, adidas, Reebok, Umbro, Karrimor, Lonsdale, Dunlop and Slazenger, the clothing, sports wear and sports gear will not only help you train and improve in your chosen sport  or activity whether you are a beginner or a professional, but our exceptional value will mean you can get more for your money!</p>
+
+            <hr>
+
+            <h2>Featured offers</h2>
+
+            <section class="categories">
+                <article class="category-unit">
+                    <a href="#">
+                        <img src="img/banners/b-1.jpg" alt="Golf" width="221" height="199">
+                        <h1>GOLF</h1>
+                        <p>Huge discounts golf clothing and equipment from Dunlop, Nike, Reebook and Callaway...</p>
+                    </a>
+                </article>
+
+                <article class="category-unit">
+                    <a href="#">
+                        <img src="img/banners/b-2.jpg" width="221" height="199" alt="Outdoors">
+                        <h1>OUTDOORS</h1>
+                        <p>Explore the outdoors for less with Karrimor, Gelert, and Craghoppers...</p>
+                    </a>
+                </article>
+
+                <article class="category-unit">
+                    <a href="#">
+                        <img src="img/banners/b-3.jpg" width="221" height="199" alt="Fishing">
+                        <h1>FISHING</h1>
+                        <p>Grab a bargain today...</p>
+                    </a>
+                </article>
+
+                <article class="category-unit">
+                    <a href="#">
+                        <img src="img/banners/b-4.jpg" width="221" height="199" alt="Fitness">
+                        <h1>FITNESS</h1>
+                        <p>Get fighting fit in 2014 with USA Pro, Nike and Lonsdale...</p>
+                    </a>
+                </article>
+            </section>
+            
+            <hr>
+            
+            <h2>Registration</h2>
+            <p>We’ll send you regular emails filled with the latest offers, daily deals and content available on the website. The more information you provide, the more personal the offers!</p>
+
+            <form class="form" action="#">
+                <ul>
+                    <li>
+                        <label for="name" class="row-label">Name</label>
+                        <input type="text" id="name" placeholder="Enter your first name here" required />
+                        <span class="descr">6 or more characters</span>
+                    </li>
+                    <li>
+                        <label for="email" class="row-label">E-mail</label>
+                        <input type="email" name="email" placeholder="Enter your email address here" id="email" required />
+                    </li>
+                    <li>
+                        <input type="submit" value="Register" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <!-- Importing jquery and jquery.flexslider from CDN servers -->
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.11.1.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/jquery.flexslider.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>
