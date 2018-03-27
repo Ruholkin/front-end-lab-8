@@ -31,6 +31,8 @@ function Fighter(object){
 	this._attack = object.attack;
 	this._totalHitpoints = object.hitpoints;
 	this._currentHitpoints = object.hitpoints;
+	// array for fight.js
+	this._logs = [];
 }
 Fighter.prototype.getName = function(){
 	return this._name;
@@ -70,6 +72,18 @@ Fighter.prototype.isAlive = function(){
 	}
 	return false;
 }
+// methods for fighter.js
+Fighter.prototype.getLogs = function(){
+	return this._logs;
+}
+Fighter.prototype.setLogs = function(){
+	for( let i = 0; i < arguments.length; i++){
+		this._logs.push(arguments[i]);
+	}
+}
+Fighter.prototype.clearLogs = function(){
+	this._logs = [];
+}
 
 // Champion constructor
 function Champion(){
@@ -83,10 +97,16 @@ Champion.prototype.heal = function(){
 	if( this.getTotalHitpoints() > this.getHitpoints() ){
 		this.setHitpoints( this.getHitpoints() + 5 );
 	}
+
+	this.clearLogs();
+	this.setLogs("heal");
 }
 Champion.prototype.defence = function(){
 	this.setDefence(true);
 	this.setTotalHitpoints( this.getTotalHitpoints() + 1 );
+
+	this.clearLogs();
+	this.setLogs("defence");
 }
 Champion.prototype.getDefence = function(){
 	return this._defence;
@@ -97,6 +117,11 @@ Champion.prototype.setDefence = function(boolean){
 Champion.prototype.fight = function(fighter){
 	if( fighter.isAlive() ){
 		Fighter.prototype.fight.call(this, fighter);
+
+		this.clearLogs();
+		fighter.clearLogs();
+		this.setLogs("fight", this.getAttack());
+
 		if( !fighter.isAlive() ){
 			this.setAttack( this.getAttack() + 1 );
 		}
@@ -129,6 +154,9 @@ Monster.prototype.setMultiplier = function(amount){
 Monster.prototype.enrage = function(){
 	this.setMultiplier( this.getMultiplier() + 2 );
 	this.setEnrageTurns(2);
+
+	this.clearLogs();
+	this.setLogs("enrage");
 }
 Monster.prototype.fury = function(){
 	if( this.getTotalHitpoints() <= 5 || this.getHitpoints <= 5 ){
@@ -137,11 +165,26 @@ Monster.prototype.fury = function(){
 	this.setTotalHitpoints( this.getTotalHitpoints() - 5 );
 	this.setHitpoints( this.getHitpoints() - 5 );
 	this.setAttack( this.getAttack() + 2 );	
+
+	this.clearLogs();
+	this.setLogs("fury");
 }
 Monster.prototype.fight = function(fighter){
+	if( fighter.getDefence() ){
+		this.clearLogs();
+		fighter.clearLogs();
+		this.setLogs(fighter.getDefence());
+		fighter.setDefence(false);
+		return;
+	}
 	if( this.getEnrageTurns() > 0 ){
 		this.setAttack( this.getAttack() * this.getMultiplier() );
 		Fighter.prototype.fight.call(this, fighter);
+
+		this.clearLogs();
+		fighter.clearLogs();
+		this.setLogs("fight", this.getAttack());
+
 		this.setAttack( this.getAttack() / this.getMultiplier() );
 		this.setEnrageTurns( this.getEnrageTurns() - 1 );
 		if( !fighter.isAlive() ){
@@ -150,6 +193,11 @@ Monster.prototype.fight = function(fighter){
 		}
 	}else{
 		Fighter.prototype.fight.call(this, fighter);
+
+		this.clearLogs();
+		fighter.clearLogs();
+		this.setLogs("fight", this.getAttack());
+
 		if( !fighter.isAlive() ){
 			this.setHitpoints( this.getHitpoints() + Math.round( 0.25 * fighter.getTotalHitpoints() ) );
 			this.setTotalHitpoints( this.getTotalHitpoints() + Math.round( 0.1 * fighter.getTotalHitpoints() ) );
