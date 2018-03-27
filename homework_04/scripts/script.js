@@ -25,3 +25,154 @@ function assign(object) {
     return newObject;
 };
 // Task 2
+
+function Fighter(object){
+	// set private fields
+	this._name = object.name;
+	this._attack = object.attack;
+	this._totalHitpoints = object.hitpoints;
+	this._currentHitpoints = object.hitpoints;
+}
+// set prototype methods
+// to have opportunity to rewrite them 
+// inside inherited classes
+Fighter.prototype.getHitpoins = function(){
+	return this._currentHitpoints;
+}
+Fighter.prototype.setHitpoints = function(amount){
+	this._currentHitpoints = amount;
+}
+Fighter.prototype.getTotalHitpoints = function(){
+	return this._totalHitpoints;
+}
+Fighter.prototype.setTotalHitpoints = function(amount){
+	this._totalHitpoints = amount;
+}
+Fighter.prototype.getAttack = function(){
+	return this._attack;
+}
+Fighter.prototype.setAttack = function(amount){
+	this._attack = amount;
+}
+Fighter.prototype.fight = function(fighter){
+	if( fighter.isAlive() ){
+		fighter.setHitpoints( fighter.getHitpoints() - this._attack );
+		if( fighter.getHitpoins() <= 0 ){
+			fighter.setHitpoints(0);
+		}
+	}
+}
+Fighter.prototype.isAlive = function(){
+	if( this._currentHitpoints > 0 ){
+		return true;
+	}
+	return false;
+}
+
+// Champion constructor
+function Champion(){
+	Fighter.apply(this, arguments);
+	this._defence = false;
+}
+Champion.prototype.heal = function(){
+	if( this.getTotalHitpoints() > this.getHitpoins() ){
+		this.setHitpoints( this.getHitpoins() + 5 );
+	}
+}
+Champion.prototype.defence = function(){
+	this.setDefence(true);
+	this.setTotalHitpoints( this.getTotalHitpoints() + 1 );
+}
+Champion.prototype.getDefence = function(){
+	return this._defence;
+}
+Champion.prototype.setDefence = function(boolean){
+	this._defence = boolean;
+}
+Champion.prototype.fight = function(fighter){
+	Fighter.prototype.fight.call(this, fighter);
+	if( !fighter.isAlive() ){
+		this.setAttack( this.getAttack() + 1 );
+	}
+}
+
+// Monster constructor 
+function Monster(){
+	Fighter.apply(this, arguments);
+	this._enrageAttack = 0;
+	this._enrageTurns = 0;
+	this._multiplier = 0;
+}
+Monster.prototype.getEnrageTurns = function(){
+	return this._enrageTurns;
+}
+Monster.prototype.setEnrageTurns = function(amount){
+	this._enrageTurns = amount;
+}
+Monster.prototype.getMultiplier = function(){
+	return this._multiplier;
+}
+Monster.prototype.setMultiplier = function(amount){
+	this._multiplier = amount;
+}
+Monster.prototype.enrage = function(){
+	this.setMultiplier( this.getMultiplier() + 2 );
+	this.setEnrageTurns(2);
+}
+Monster.prototype.fury = function(){
+	if( this.getTotalHitpoints() > 5 ){
+		this.setTotalHitpoints( this.getTotalHitpoints() - 5 );
+	}else{
+		throw new RangeError("Not enough hitpoints");
+	}
+	if( this.getHitpoins() > 5 ){
+		this.setHitpoints( this.getHitpoins() - 5 );
+	}else{
+		throw new RangeError("Not enough hitpoints");
+	}
+	this.setAttack( this.getAttack() + 2 );
+}
+Monster.prototype.fight = function(fighter){
+	if( this.getEnrageTurns() > 0 ){
+		this.setAttack( this.getAttack() * this.getMultiplier() );
+		Fighter.prototype.fight.call(this, fighter);
+		this.setAttack( this.getAttack() / this.getMultiplier() );
+		this.setEnrageTurns( this.getEnrageTurns() - 1 );
+		if( !fighter.isAlive() ){
+			this.setHitpoints( this.getHitpoins() + Math.round( 0.25 * fighter.getTotalHitpoints() ) );
+			this.setTotalHitpoints( this.getTotalHitpoints() + Math.round( 0.1 * fighter.getTotalHitpoints() ) );
+		}
+	}else{
+		Fighter.prototype.fight.call(this, fighter);
+		if( !fighter.isAlive() ){
+			this.setHitpoints( this.getHitpoins() + Math.round( 0.25 * fighter.getTotalHitpoints() ) );
+			this.setTotalHitpoints( this.getTotalHitpoints() + Math.round( 0.1 * fighter.getTotalHitpoints() ) );
+		}
+	}
+}
+
+// create objects Monster and Champion, using the prototype of the Champion 
+// to inherit it's methods
+Monster.prototype = Object.create(Fighter.prototype);
+Monster.prototype.constructor = Monster;
+Champion.prototype = Object.create(Fighter.prototype);
+Champion.prototype.constructor = Champion;
+
+// check for task 2
+var hunter = new Champion({name: "Rexxar", attack: 10, hitpoints: 60});
+var beast = new Monster({name: "King Krush", attack: 8, hitpoints: 80});
+
+hunter.fight(beast);
+beast.getHitpoints(); // -> 70
+beast.enrage();
+hunter.fight(beast);
+beast.getHitpoints(); // -> 60
+beast.fight(hunter);
+hunter.getHitpoints(); // -> 44
+…
+hunter.fight(beast);
+beast.isAlive(); // -> false
+hunter.getAttack(); // -> 11
+hunter.getHitpoints(); // -> 44
+hunter.heal();
+hunter.getHitpoints(); // -> 49
