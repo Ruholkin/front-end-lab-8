@@ -1,3 +1,4 @@
+// it should be included to script.js
 function progress( fighter_1, fighter_2 ){
 	if( fighter_1.getLogs().length === 0 && fighter_2.getLogs().length === 0 ){
 		return;
@@ -29,6 +30,7 @@ function cases(fighter_1, fighter_2){
 					break;
 				case true:
 					console.log(fighter_1.getName() + " could not deal damage to " + fighter_2.getName());
+					break;
 				default: 
 					break;
 			}
