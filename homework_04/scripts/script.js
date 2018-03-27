@@ -36,7 +36,10 @@ function Fighter(object){
 // set prototype methods
 // to have opportunity to rewrite them 
 // inside inherited classes
-Fighter.prototype.getHitpoins = function(){
+Fighter.prototype.getName = function(){
+	return this._name;
+}
+Fighter.prototype.getHitpoints = function(){
 	return this._currentHitpoints;
 }
 Fighter.prototype.setHitpoints = function(amount){
@@ -55,9 +58,12 @@ Fighter.prototype.setAttack = function(amount){
 	this._attack = amount;
 }
 Fighter.prototype.fight = function(fighter){
+	if( this.getName() === fighter.getName() ){
+		throw new TypeError( this.getName() + " cannot fight with himself");
+	}
 	if( fighter.isAlive() ){
-		fighter.setHitpoints( fighter.getHitpoints() - this._attack );
-		if( fighter.getHitpoins() <= 0 ){
+		fighter.setHitpoints( fighter.getHitpoints() - this.getAttack() );
+		if( fighter.getHitpoints() <= 0 ){
 			fighter.setHitpoints(0);
 		}
 	}
@@ -74,9 +80,14 @@ function Champion(){
 	Fighter.apply(this, arguments);
 	this._defence = false;
 }
+// create objects Monster and Champion, using the prototype of the Champion 
+// to inherit it's methods
+Champion.prototype = Object.create(Fighter.prototype);
+Champion.prototype.constructor = Champion;
+
 Champion.prototype.heal = function(){
-	if( this.getTotalHitpoints() > this.getHitpoins() ){
-		this.setHitpoints( this.getHitpoins() + 5 );
+	if( this.getTotalHitpoints() > this.getHitpoints() ){
+		this.setHitpoints( this.getHitpoints() + 5 );
 	}
 }
 Champion.prototype.defence = function(){
@@ -90,9 +101,13 @@ Champion.prototype.setDefence = function(boolean){
 	this._defence = boolean;
 }
 Champion.prototype.fight = function(fighter){
-	Fighter.prototype.fight.call(this, fighter);
-	if( !fighter.isAlive() ){
-		this.setAttack( this.getAttack() + 1 );
+	if( fighter.isAlive() ){
+		Fighter.prototype.fight.call(this, fighter);
+		if( !fighter.isAlive() ){
+			this.setAttack( this.getAttack() + 1 );
+		}
+	}else{
+		throw new RangeError("Enemy is already dead");
 	}
 }
 
@@ -103,6 +118,11 @@ function Monster(){
 	this._enrageTurns = 0;
 	this._multiplier = 0;
 }
+// create objects Monster and Champion, using the prototype of the Champion 
+// to inherit it's methods
+Monster.prototype = Object.create(Fighter.prototype);
+Monster.prototype.constructor = Monster;
+
 Monster.prototype.getEnrageTurns = function(){
 	return this._enrageTurns;
 }
@@ -120,17 +140,12 @@ Monster.prototype.enrage = function(){
 	this.setEnrageTurns(2);
 }
 Monster.prototype.fury = function(){
-	if( this.getTotalHitpoints() > 5 ){
-		this.setTotalHitpoints( this.getTotalHitpoints() - 5 );
-	}else{
+	if( this.getTotalHitpoints() <= 5 || this.getHitpoints <= 5 ){
 		throw new RangeError("Not enough hitpoints");
 	}
-	if( this.getHitpoins() > 5 ){
-		this.setHitpoints( this.getHitpoins() - 5 );
-	}else{
-		throw new RangeError("Not enough hitpoints");
-	}
-	this.setAttack( this.getAttack() + 2 );
+	this.setTotalHitpoints( this.getTotalHitpoints() - 5 );
+	this.setHitpoints( this.getHitpoints() - 5 );
+	this.setAttack( this.getAttack() + 2 );	
 }
 Monster.prototype.fight = function(fighter){
 	if( this.getEnrageTurns() > 0 ){
@@ -139,24 +154,17 @@ Monster.prototype.fight = function(fighter){
 		this.setAttack( this.getAttack() / this.getMultiplier() );
 		this.setEnrageTurns( this.getEnrageTurns() - 1 );
 		if( !fighter.isAlive() ){
-			this.setHitpoints( this.getHitpoins() + Math.round( 0.25 * fighter.getTotalHitpoints() ) );
+			this.setHitpoints( this.getHitpoints() + Math.round( 0.25 * fighter.getTotalHitpoints() ) );
 			this.setTotalHitpoints( this.getTotalHitpoints() + Math.round( 0.1 * fighter.getTotalHitpoints() ) );
 		}
 	}else{
 		Fighter.prototype.fight.call(this, fighter);
 		if( !fighter.isAlive() ){
-			this.setHitpoints( this.getHitpoins() + Math.round( 0.25 * fighter.getTotalHitpoints() ) );
+			this.setHitpoints( this.getHitpoints() + Math.round( 0.25 * fighter.getTotalHitpoints() ) );
 			this.setTotalHitpoints( this.getTotalHitpoints() + Math.round( 0.1 * fighter.getTotalHitpoints() ) );
 		}
 	}
 }
-
-// create objects Monster and Champion, using the prototype of the Champion 
-// to inherit it's methods
-Monster.prototype = Object.create(Fighter.prototype);
-Monster.prototype.constructor = Monster;
-Champion.prototype = Object.create(Fighter.prototype);
-Champion.prototype.constructor = Champion;
 
 // check for task 2
 var hunter = new Champion({name: "Rexxar", attack: 10, hitpoints: 60});
@@ -169,8 +177,12 @@ hunter.fight(beast);
 beast.getHitpoints(); // -> 60
 beast.fight(hunter);
 hunter.getHitpoints(); // -> 44
-…
 hunter.fight(beast);
+hunter.fight(beast);
+hunter.fight(beast);
+hunter.fight(beast);
+hunter.fight(beast);
+hunter.fight(beast); // -> Enemy is already dead
 beast.isAlive(); // -> false
 hunter.getAttack(); // -> 11
 hunter.getHitpoints(); // -> 44
