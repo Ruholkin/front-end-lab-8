@@ -4,7 +4,7 @@ var options = { width: 150 };
 var configs = assign({}, defaults, options);
 
 function assign(object) {
-    if (object === null || object === undefined) { // Error if undefined or null
+    if (object === null || object === undefined) {
       console.error("Cannot convert first argument to object");
       return false;
     }
@@ -27,15 +27,11 @@ function assign(object) {
 // Task 2
 
 function Fighter(object){
-	// set private fields
 	this._name = object.name;
 	this._attack = object.attack;
 	this._totalHitpoints = object.hitpoints;
 	this._currentHitpoints = object.hitpoints;
 }
-// set prototype methods
-// to have opportunity to rewrite them 
-// inside inherited classes
 Fighter.prototype.getName = function(){
 	return this._name;
 }
@@ -80,8 +76,6 @@ function Champion(){
 	Fighter.apply(this, arguments);
 	this._defence = false;
 }
-// create objects Monster and Champion, using the prototype of the Champion 
-// to inherit it's methods
 Champion.prototype = Object.create(Fighter.prototype);
 Champion.prototype.constructor = Champion;
 
@@ -110,7 +104,6 @@ Champion.prototype.fight = function(fighter){
 		throw new RangeError("Enemy is already dead");
 	}
 }
-
 // Monster constructor 
 function Monster(){
 	Fighter.apply(this, arguments);
@@ -118,8 +111,6 @@ function Monster(){
 	this._enrageTurns = 0;
 	this._multiplier = 0;
 }
-// create objects Monster and Champion, using the prototype of the Champion 
-// to inherit it's methods
 Monster.prototype = Object.create(Fighter.prototype);
 Monster.prototype.constructor = Monster;
 
