@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Homework 6</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<div class="container">
+		<div class="col">
+			<label for="ip-adress">Enter IP-adress</label>
+			<input name="ip" type="text" id="ip-adress" pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" required>	
+			<input type="button" name="track" value="Track IP" class="button" onclick="onClick()">
+			<div id="loader"></div>
+			<div id="table-container"></div>
+			<input type="button" name="validate" value="Validate" class="button" id="validate" onclick="validate()">
+			<p id="result"></p>
+		</div>
+	</div>
+
+	<script src="js/task1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/task2.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+</html>
