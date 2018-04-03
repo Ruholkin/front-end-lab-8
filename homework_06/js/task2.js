@@ -55,8 +55,6 @@ function onLoad(){
 
 function tableOutput(object){
   table_container.style.display = "none";
-  
-  //table_container.style.display = "block";
   table_container.innerHTML = "";
   let table = document.createElement("table");
   let tr = document.createElement("tr"),
@@ -69,29 +67,20 @@ function tableOutput(object){
 	tr.appendChild(td_key);
 	table.appendChild(tr);
 
-  for (let i in object) {
+   for (let i in object) {
 
-	if( i === "ip" || 
-		  i === "city" || 
-		  i === "country_name" || 
-		  i === "latitude" || 
-		  i === "longitude"  ||  	
-		  i === "continent_code" || 
-		  i === "currency" || 
-		  i === "org" ) {
+		if( checkValue(i) ) {
+			tr = document.createElement("tr"),
+			td_prop = document.createElement("td"),
+			td_key = document.createElement("td");
 
-		tr = document.createElement("tr"),
-		td_prop = document.createElement("td"),
-		td_key = document.createElement("td");
-
-	  td_prop.innerText = i.charAt(0).toUpperCase() + i.slice(1);
-	  td_key.innerText = object[i];
-	  tr.appendChild(td_prop);
-	  tr.appendChild(td_key);
-	  table.appendChild(tr);
-	}
-	  
-  }
+		  td_prop.innerText = i.charAt(0).toUpperCase() + i.slice(1);
+		  td_key.innerText = object[i];
+		  tr.appendChild(td_prop);
+		  tr.appendChild(td_key);
+		  table.appendChild(tr);
+		}
+   }
 
   table_container.appendChild(table);
 
@@ -102,4 +91,14 @@ function tableOutput(object){
 			validate_button.style.display = "block"
 		}, 500);
 	}, 2000);
+}
+
+function checkValue(value) {
+  if( value === "ip" || value === "city" || 
+		  value === "country_name" || value === "latitude" || 
+		  value === "longitude"  ||  value === "continent_code" || 
+		  value === "currency" || value === "org" ){
+  	return true;
+  }
+  return false;
 }
