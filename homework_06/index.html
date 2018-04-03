@@ -9,12 +9,17 @@
 <body>
 	<div class="container">
 		<div class="col">
-			<label for="ip-adress">Enter IP-adress</label>
-			<input name="ip" type="text" id="ip-adress" pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" required>	
+			<div class="enter-field">
+				<label for="ip-adress">Enter IP-adress:</label>
+				<input name="ip" type="text" id="ip-adress">	
+			</div>
 			<input type="button" name="track" value="Track IP" class="button" onclick="onClick()">
+			<!-- First action -->
 			<div id="loader"></div>
 			<div id="table-container"></div>
 			<input type="button" name="validate" value="Validate" class="button" id="validate" onclick="validate()">
+			<!-- Second action -->
+			<div id="loader-r"></div>
 			<p id="result"></p>
 		</div>
 	</div>

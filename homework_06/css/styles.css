@@ -14,15 +14,43 @@ label{
 input{
 	margin: 20px;
 }
+p{
+	text-align: center;
+}
+table{
+	width: 100%;
+	margin: auto;
+	border-collapse: collapse;
+	border: 2px solid #F3C13A;
+}
+th{ 
+  text-align: left;
+  background: #ccc;
+  padding: 5px;
+  border: 2px solid #F3C13A;
+}
+tr:first-child{
+	background-color: #F3C13A;
+	color:  #fff;
+	text-align: center;
+	font-size: 16px;
+}
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+td{ 
+  padding: 7px;
+  border: 1px solid #F3C13A;
+}
 .container{
 	height: 100%;
-	width: 400px;
+	width: 500px;
 	margin: auto;
 	background: #fff;
 }
 .col{
 	height: 90%;
-	width: 90%;
+	width: 80%;
 	margin: auto;
 }
 .button{
@@ -30,24 +58,47 @@ input{
 	height: 40px;
 	background:  #F3C13A;
 	color: #fff;
-	border: 1px solid #fff;
+	border: 1px solid #F3C13A;
 }
 .button:hover, .button:focus{
 	border: 2px solid rgb(193, 75, 132);
+}
+.enter-field{
+	margin: auto;
+	text-align: center;
+}
+#ip-adress{
+	height: 25px;
+	width: 50%;
+	background-color: #f2f2f2;
+	border: 2px solid #F3C13A;
 }
 #validate{
 	display: none;
 }
 #table-container{
 	display: none;
+	width: 90%;
+	margin: auto;
 }
 #result{
 	display: none;
 }
 #loader {
 	display: none;
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #F3C13A; /* Blue */
+	margin: auto;
+    border: 12px solid #f3f3f3;
+    border-top: 12px solid #F3C13A;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+#loader-r{
+	display: none;
+	margin: auto;
+    border: 12px solid #f3f3f3;
+    border-top: 12px solid #F3C13A;
     border-radius: 50%;
     width: 60px;
     height: 60px;
