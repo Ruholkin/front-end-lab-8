@@ -11,25 +11,27 @@ let url_get = `https://ipapi.co/${ip_adress.value}/json/`;
 let url_post = `https://shrouded-garden-94580.herokuapp.com/`;
 
 function onClick(){
-  onLoad();
+  if(checkIpAddress(ip_adress)){
+  	onLoad();
 
-  http.get(url_get)
+  	http.get(url_get)
 	  .then(returnedVelue => {
 		value = returnedVelue;
 		loader.style.display = "block";
 
 		tableOutput(JSON.parse(value));
-
-	}).catch( e => {
-	  throw new Error(e);
-	});
+		})
+		.catch( e => {
+	  	throw new Error(e);
+		});
+  }
 }
 
 function validate(){
 	loader_r.style.display = "block";
 
   http.post(url_post, value)
-	  .then(returnedVelue => {
+	.then(returnedVelue => {
 		let value = returnedVelue;
 		result.innerHTML = value;
 
@@ -37,15 +39,16 @@ function validate(){
       loader_r.style.display = "none";
 		  result.style.display = "block";
 		}, 2000);
-
-	}).catch( e => {
-	 throw new Error(e);
-   });
+	})
+	.catch( e => {
+	 		throw new Error(e);
+  });
 }
 
 function onLoad(){
   ip_adress = document.getElementById("ip-adress");
 
+  // if user doesn't enter ip-adress it will check his ip
   if( ip_adress.value === "" ){
 	  url_get = `https://ipapi.co/json/`;
   } else {
@@ -102,3 +105,12 @@ function checkValue(value) {
   }
   return false;
 }
+
+function checkIpAddress(ipadress) {  
+  if ( /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipadress) 
+  	   || ipadress.value === "") {  
+    return true;  
+  }  
+  alert("You have entered an invalid IP address!");  
+  return false;  
+}  
