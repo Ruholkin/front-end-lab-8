@@ -56,7 +56,7 @@ p{
 	border: none;
 }
 .players{
-	width: 80%;
+	width: 590px;
 	margin: 20px auto;
 	display: grid;
 	justify-content: space-around;
@@ -67,26 +67,38 @@ p{
 	text-align: center;
 	font-size: 18px;
 	border-radius: 3px;
-	border: 2px solid #000;
+	border: 3px solid #000;
 	padding: 20px 40px;
 	background : #000;
 	color: #fff;
 }
+/* .black-text::after{
+	visibility: hidden;
+	content: "WIN";
+	color : rgb(255, 60, 4);
+	font-size : 10px;
+	vertical-align : super;
+
+} */
 .white{
 	font-size: 18px;
 	border-radius: 3px;
-	border: 2px solid #FFF;
+	border: 3px solid #FFF;
 	padding: 20px 40px;
 	background : #FFF;
 	color: #000;
 }
-.win{
-	border: 2px solid rgb(255, 60, 4);
-}
+/* .white-text::after{
+	visibility: hidden;
+	content: "WIN";
+	color : rgb(255, 60, 4);
+	font-size : 10px;
+	vertical-align : super;
+} */
 .new-game{
 	visibility: hidden;
 	border-radius: 3px;
-	border: 2px solid rgb(255, 60, 4);
+	border: 3px solid rgb(255, 60, 4);
 	padding: 20px 40px;
 	font-size: 18px;
 	color: #fff;
@@ -94,7 +106,7 @@ p{
 }
 .new-game:hover{
 	cursor: pointer;
-	border: 2px solid #fff;
+	border: 3px solid #fff;
 }
 .logo{
 	margin:  40px auto;

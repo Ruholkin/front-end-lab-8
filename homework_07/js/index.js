@@ -8,6 +8,8 @@ const BLACK = 2;
 let currentPlayer = WHITE;
 let isClick = true;
 
+let WINNER = { "content": "WIN" , "color" : "rgb(255, 60, 4)", "font-size" : "10px", "vertical-align" : "super"};
+
 $(document).ready(() => {
 	const class_1 = "cell";
 	const class_2 = "cell-b";
@@ -151,19 +153,29 @@ function checkPlayer(board, height, width){
 	let result = checkWin(board, height, width);
 	switch (result) {
 		case 1:
-			console.log("White player won!");
 			clearCells(board, BOARD_SIZE);
 			currentPlayer = WHITE;
 			isClick = false;
 			$(".new-game").css({"visibility" : "visible"});
+			$(".black").css({ "border" : "3px solid #000" });
+			$(".white").css({ "border" : "3px solid #fff" });
 			break;
 		case 2:
-			console.log("Black player won!");
 			clearCells(board, BOARD_SIZE);
 			currentPlayer = WHITE;
 			isClick = false;
+			$(".new-game").css({"visibility" : "visible"});
+			$(".black").css({ "border" : "3px solid #000" });
+			$(".white").css({ "border" : "3px solid #fff" });
 			break;
 		default:
+			if(currentPlayer === WHITE){
+				$(".white").css({ "border" : "3px solid #fff" });
+				$(".black").css({ "border" : "3px solid #fff" });
+			}else{
+				$(".black").css({ "border" : "3px solid #000" });
+				$(".white").css({ "border" : "3px solid #000" });
+			}
 			break;
 	}
 }
