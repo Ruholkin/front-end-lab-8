@@ -1,0 +1,50 @@
+body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: 'Julius Sans One', sans-serif;
+	background : #f2f2f2;
+}
+.container{
+	margin: 0 auto;
+}
+.board{
+
+}
+.board-back{
+
+}
+.cell{
+	
+}
+.cell-b{
+
+}
+.circle-white{
+	border-radius: 50%;
+	width: 40px;
+	height: 40px; 
+	background: rgba(255, 255, 255, 1.0);
+	border: none;
+}
+.circle-black{
+	border-radius: 50%;
+	width: 40px;
+	height: 40px; 
+	background: rgba(0, 0, 0, 1.0);
+	border: none;
+}
+.circle-transparent{
+	border-radius: 50%;
+	width: 40px;
+	height: 40px; 
+	background: rgba(0, 0, 0, 0.0);
+	border: none;
+}
+.circle-win{
+	border-radius: 50%;
+	width: 40px;
+	height: 40px; 
+	background: rgba(255, 60, 4, 1.0);
+	border: none;
+}
