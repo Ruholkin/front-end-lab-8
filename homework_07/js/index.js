@@ -1,9 +1,15 @@
+const BOARD_HEIGHT = 15;
+const BOARD_WIDTH = 15;
+let BOARD_SIZE = 15;
+let board = createArray(BOARD_SIZE);
+
+const WHITE = 1;
+const BLACK = 2; 
+let currentPlayer = WHITE;
+
 $(document).ready(() => {
-	let BOARD_HEIGHT = 15;
-	let BOARD_WIDTH = 15;
-	let class_1 = "cell";
-	let class_2 = "cell-b";
-	let board = [];
+	const class_1 = "cell";
+	const class_2 = "cell-b";
 
 	$("<div></div>").addClass("container").appendTo("body");
 
@@ -20,35 +26,29 @@ $(document).ready(() => {
 							 "background" : "#404040", "margin" : "20px auto", "display" : "grid",
 							 "border" : "2px solid #404040", "grid-column-gap" : "2px", "grid-row-gap" : "2px", 
 							 "justify-items" : "center", "grid-template-columns" : "repeat(15, 1fr)", "grid-template-rows" : "auto" });
-	
-	createArray(board, BOARD_HEIGHT);
 
-	createBoard(BOARD_HEIGHT, BOARD_WIDTH, $board, class_2, board);
+	createBoardBackground(BOARD_HEIGHT, BOARD_WIDTH, $board, class_2, board);
 	createBoard(BOARD_HEIGHT, BOARD_WIDTH, $boardCells, class_1, board);
 
 	$board.appendTo($container);
 	$boardCells.appendTo($container);
+	addEvents();
 
-	$('input').on('onClick', () => {
-		alert(1);
-	});
 
 	$(".cell").css({ "height" : "40px", "width" : "40px", "background" : "rgba(255, 0, 0, 0.0)", "float" : "left" });
 	$(".cell-b").css({ "height" : "40px", "width" : "40px", "background" : "#f2f2f2", "float" : "left" });
 
-	console.log(board[2][3]);
-	console.log(board[2][3].value);
-
 });
 
-function createArray(arr, size){
-	let arr_1 = [];
-	for( let i = 0; i < size; i++ ){
-		for( let j = 0; j < size; j++ ){
-			arr_1[j] = {};
-		}
-		arr[i] = arr_1;
-	}
+function createArray(size){
+  let arr = new Array();
+  for( let i=0; i < size; i++){
+    arr[i] = new Array();
+    for( let j=0; j < size; j++){
+      arr[i][j] = new Object();
+    }
+  }
+  return arr;
 }
 
 function createBoard(height, width, board, class_, arr){
@@ -62,8 +62,16 @@ function createBoard(height, width, board, class_, arr){
 	}
 }
 
-function checkCell(board, row, column){
-	if(board[row][column].value === 0){
+function createBoardBackground(height, width, board, class_){
+	for( let i = 0; i < height; i++){
+		for( let j = 0; j < width; j++){
+			$("<div></div>").addClass(class_).appendTo(board);
+		}
+	}
+}
+
+function checkCell(value){
+	if(value === 0){
 		return true;
 	}
 	return false;
@@ -77,19 +85,77 @@ function clearCells(board, size){
 	}
 }
 
-function getI(){
+function getI(string){
+	let result = string.split("_");
+	return result[0];
 }
 
-function getJ(){
+function getJ(string){
+	let result = string.split("_");
+	return result[1];
+}
 
+function addEvents(){
+	$('input').click( function () {
+		let nameClass = "";
+		let listClasses = $( this ).attr("class");
+		let listClasses_splitted = listClasses.split(" ");
+		let rowIndex = getI(listClasses_splitted[1]);
+		let columnIndex = getJ(listClasses_splitted[1]);
+
+		if(checkCell(board[rowIndex][columnIndex].value)){
+			if(currentPlayer === WHITE){
+				board[rowIndex][columnIndex].value = WHITE;
+				currentPlayer = BLACK;
+
+				nameClass = "." + rowIndex + "_" + columnIndex;
+				$(nameClass).addClass("circle-white");
+
+				checkPlayer(board, BOARD_HEIGHT, BOARD_WIDTH);
+				return;
+			}else{
+				board[rowIndex][columnIndex].value = BLACK;
+				currentPlayer = WHITE;
+
+				nameClass = "." + rowIndex + "_" + columnIndex;
+				$(nameClass).addClass("circle-black");
+				checkPlayer(board, BOARD_HEIGHT, BOARD_WIDTH);
+				return;
+			}
+		}else{
+			return;
+		}
+
+	});
 }
 
 function newGame(board, size){
+	let nameClass = "";
 	for( let i = 0; i < size; i++ ){
 		for ( let j = 0; j < size; j++ ){
-			// поміняти на transparent
-			//board[i][j].circle;
+			nameClass = "." + i + "_" + j;
+			$(nameClass).removeClass("circle-white");
+			$(nameClass).removeClass("circle-black");
+			$(nameClass).removeClass("circle-win");
 		}
+	}
+}
+
+function checkPlayer(board, height, width){
+	let result = checkWin(board, height, width);
+	switch (result) {
+		case 1:
+			console.log("White player won!");
+			clearCells(board, BOARD_SIZE);
+			currentPlayer = WHITE;
+			break;
+		case 2:
+			console.log("Black player won!");
+			clearCells(board, BOARD_SIZE);
+			currentPlayer = WHITE;
+			break;
+		default:
+			break;
 	}
 }
 
@@ -97,41 +163,86 @@ function checkWin(board, height, width) {
 	let HEIGHT = height;
 	let WIDTH = width;
 	let EMPTY_CELL = 0;
+	let nameClass = "";
 
 	for (let i = 0; i < HEIGHT; i++) {
 		for (let j = 0; j < WIDTH; j++) {
 			let result = board[i][j].value;
 			
-			if (result == EMPTY_CELL){
+			if (result === EMPTY_CELL){
 				continue;
 			}
 
 			if (j + 3 < WIDTH &&
-				result == board[i][j+1].value &&
-				result == board[i][j+2].value &&
-				result == board[i][j+3].value){
+				result === board[i][j+1].value &&
+				result === board[i][j+2].value &&
+				result === board[i][j+3].value){
+
+				for(let k = 0; k < 4; k++){
+					nameClass = "." + i + "_" + (j + k);
+					if(currentPlayer === 1){
+						$(nameClass).removeClass("circle-white");
+					}else{
+						$(nameClass).removeClass("circle-black");
+					}
+					$(nameClass).addClass("circle-win");
+				}
+
 				return result;
 			}
 
 			if (i + 3 < HEIGHT) {
 
-				if (result == board[i+1][j].value &&
-					result == board[i+2][j].value &&
-					result == board[i+3][j].value){
+				if (result === board[i+1][j].value &&
+					result === board[i+2][j].value &&
+					result === board[i+3][j].value){
+
+					for(let k = 0; k < 4; k++){
+						nameClass = "." + (i + k) + "_" + j;
+						if(currentPlayer === 1){
+							$(nameClass).removeClass("circle-white");
+						}else{
+							$(nameClass).removeClass("circle-black");
+						}
+						$(nameClass).addClass("circle-win");
+					}
+
 					return result;
 				}
 
 				if (j + 3 < WIDTH &&
-					result == board[i+1][j+1].value &&
-					result == board[i+2][j+2].value &&
-					result == board[i+3][j+3].value){
+					result === board[i+1][j+1].value &&
+					result === board[i+2][j+2].value &&
+					result === board[i+3][j+3].value){
+
+					for(let k = 0; k < 4; k++){
+						nameClass = "." + (i + k) + "_" + (j + k);
+						if(currentPlayer === 1){
+							$(nameClass).removeClass("circle-white");
+						}else{
+							$(nameClass).removeClass("circle-black");
+						}
+						$(nameClass).addClass("circle-win");
+					}
+
 					return result;
 				}
 				
 				if (j - 3 >= 0 &&
-					result == board[i+1][j-1].value &&
-					result == board[i+2][j-2].value &&
-					result == board[i+3][j-3].value){
+					result === board[i+1][j-1].value &&
+					result === board[i+2][j-2].value &&
+					result === board[i+3][j-3].value){
+
+					for(let k = 0; k < 4; k++){
+						nameClass = "." + (i + k) + "_" + (j - k);
+						if(currentPlayer === 1){
+							$(nameClass).removeClass("circle-white");
+						}else{
+							$(nameClass).removeClass("circle-black");
+						}
+						$(nameClass).addClass("circle-win");
+					}
+
 					return result;
 				}
 			}

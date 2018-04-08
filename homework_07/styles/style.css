@@ -20,20 +20,6 @@ body{
 .cell-b{
 
 }
-.circle-white{
-	border-radius: 50%;
-	width: 40px;
-	height: 40px; 
-	background: rgba(255, 255, 255, 1.0);
-	border: none;
-}
-.circle-black{
-	border-radius: 50%;
-	width: 40px;
-	height: 40px; 
-	background: rgba(0, 0, 0, 1.0);
-	border: none;
-}
 .circle-transparent{
 	border-radius: 50%;
 	width: 40px;
@@ -41,10 +27,27 @@ body{
 	background: rgba(0, 0, 0, 0.0);
 	border: none;
 }
+.circle-white{
+	border-radius: 50%;
+	width: 30px;
+	height: 30px; 
+	margin: 5px;
+	background: rgba(255, 255, 255, 1.0);
+	border: none;
+}
+.circle-black{
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	margin: 5px;
+	background: rgba(0, 0, 0, 1.0);
+	border: none;
+}
 .circle-win{
 	border-radius: 50%;
-	width: 40px;
-	height: 40px; 
+	width: 30px;
+	height: 30px; 
+	margin: 5px;
 	background: rgba(255, 60, 4, 1.0);
 	border: none;
 }
