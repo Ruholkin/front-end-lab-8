@@ -6,6 +6,7 @@ let board = createArray(BOARD_SIZE);
 const WHITE = 1;
 const BLACK = 2; 
 let currentPlayer = WHITE;
+let isClick = true;
 
 $(document).ready(() => {
 	const class_1 = "cell";
@@ -16,16 +17,16 @@ $(document).ready(() => {
 	let $container = $(".container");
 	let $cell = $(".cell");
 
-	$container.css({ "height" : "100%", "width" : "628px", "position" : "relative", "margin" : "0 auto" });
+	$container.css({ "height" : "100%", "width" : "590px", "position" : "relative", "margin" : "0 auto" });
 	let $board = $("<div></div>").addClass("board-back");
 	let $boardCells = $("<div></div>").addClass("board");
-	$boardCells.css({ "position" : "absolute", "height" : "628px", "width" : "628px", "margin" : "20px auto", "display" : "grid", "background" : "rgba(255, 0, 0, 0.0)",
-							 "grid-column-gap" : "2px", "grid-row-gap" : "2px", "justify-items" : "center", 
+	$boardCells.css({ "position" : "absolute", "height" : "590px", "width" : "590px", "margin" : "20px auto", "display" : "grid", "background" : "rgba(255, 0, 0, 0.0)",
+							 "top" : "-20px", "left" : "-20px", "grid-column-gap" : "2px", "grid-row-gap" : "2px", "justify-items" : "center", 
 							 "grid-template-columns" : "repeat(15, 1fr)", "grid-template-rows" : "auto" });
-	$board.css({ "position" : "absolute", "top" : "20px", "left" : "20px", "height" : "628px", "width" : "628px", 
+	$board.css({ "position" : "absolute", "height" : "586px", "width" : "586px", 
 							 "background" : "#404040", "margin" : "20px auto", "display" : "grid",
 							 "border" : "2px solid #404040", "grid-column-gap" : "2px", "grid-row-gap" : "2px", 
-							 "justify-items" : "center", "grid-template-columns" : "repeat(15, 1fr)", "grid-template-rows" : "auto" });
+							 "justify-items" : "center", "grid-template-columns" : "repeat(14, 1fr)", "grid-template-rows" : "auto" });
 
 	createBoardBackground(BOARD_HEIGHT, BOARD_WIDTH, $board, class_2, board);
 	createBoard(BOARD_HEIGHT, BOARD_WIDTH, $boardCells, class_1, board);
@@ -36,7 +37,7 @@ $(document).ready(() => {
 
 
 	$(".cell").css({ "height" : "40px", "width" : "40px", "background" : "rgba(255, 0, 0, 0.0)", "float" : "left" });
-	$(".cell-b").css({ "height" : "40px", "width" : "40px", "background" : "#f2f2f2", "float" : "left" });
+	$(".cell-b").css({ "height" : "40px", "width" : "40px", "background" : "#e6e6e6", "float" : "left" });
 
 });
 
@@ -53,8 +54,8 @@ function createArray(size){
 
 function createBoard(height, width, board, class_, arr){
 	let nameClass = "";
-	for( let i = 0; i < height; i++){
-		for( let j = 0; j < width; j++){
+	for( let i = 0; i < 15; i++){
+		for( let j = 0; j < 15; j++){
 			nameClass = "" + i + "_" + j;
 			arr[i][j] = { div: $("<div></div>").addClass(class_).appendTo(board), value: 0 };
 			$("<input type='button' value='' />").addClass("circle-transparent").addClass(nameClass).appendTo(arr[i][j].div);
@@ -63,8 +64,8 @@ function createBoard(height, width, board, class_, arr){
 }
 
 function createBoardBackground(height, width, board, class_){
-	for( let i = 0; i < height; i++){
-		for( let j = 0; j < width; j++){
+	for( let i = 0; i < 14; i++){
+		for( let j = 0; j < 14; j++){
 			$("<div></div>").addClass(class_).appendTo(board);
 		}
 	}
@@ -96,14 +97,14 @@ function getJ(string){
 }
 
 function addEvents(){
-	$('input').click( function () {
+	$('.circle-transparent').click( function () {
 		let nameClass = "";
 		let listClasses = $( this ).attr("class");
 		let listClasses_splitted = listClasses.split(" ");
 		let rowIndex = getI(listClasses_splitted[1]);
 		let columnIndex = getJ(listClasses_splitted[1]);
 
-		if(checkCell(board[rowIndex][columnIndex].value)){
+		if(checkCell(board[rowIndex][columnIndex].value) && isClick === true){
 			if(currentPlayer === WHITE){
 				board[rowIndex][columnIndex].value = WHITE;
 				currentPlayer = BLACK;
@@ -127,6 +128,10 @@ function addEvents(){
 		}
 
 	});
+	$('.new-game').click(function() {
+		newGame(board, BOARD_WIDTH);
+		$('new-game').css({ "visibility" : "hidden"});
+	});
 }
 
 function newGame(board, size){
@@ -137,6 +142,7 @@ function newGame(board, size){
 			$(nameClass).removeClass("circle-white");
 			$(nameClass).removeClass("circle-black");
 			$(nameClass).removeClass("circle-win");
+			isClick = true;
 		}
 	}
 }
@@ -148,11 +154,14 @@ function checkPlayer(board, height, width){
 			console.log("White player won!");
 			clearCells(board, BOARD_SIZE);
 			currentPlayer = WHITE;
+			isClick = false;
+			$(".new-game").css({"visibility" : "visible"});
 			break;
 		case 2:
 			console.log("Black player won!");
 			clearCells(board, BOARD_SIZE);
 			currentPlayer = WHITE;
+			isClick = false;
 			break;
 		default:
 			break;

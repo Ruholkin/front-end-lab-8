@@ -3,7 +3,11 @@ body{
 	padding: 0;
 	height: 100%;
 	font-family: 'Julius Sans One', sans-serif;
-	background : #f2f2f2;
+	background : #e6e6e6;
+	min-width: 750px;
+}
+p{
+	margin: 0;
 }
 .container{
 	margin: 0 auto;
@@ -50,4 +54,52 @@ body{
 	margin: 5px;
 	background: rgba(255, 60, 4, 1.0);
 	border: none;
+}
+.players{
+	width: 80%;
+	margin: 20px auto;
+	display: grid;
+	justify-content: space-around;
+	justify-items : center;
+	grid-template-columns : repeat(3, 1fr);
+}
+.black{
+	text-align: center;
+	font-size: 18px;
+	border-radius: 3px;
+	border: 2px solid #000;
+	padding: 20px 40px;
+	background : #000;
+	color: #fff;
+}
+.white{
+	font-size: 18px;
+	border-radius: 3px;
+	border: 2px solid #FFF;
+	padding: 20px 40px;
+	background : #FFF;
+	color: #000;
+}
+.win{
+	border: 2px solid rgb(255, 60, 4);
+}
+.new-game{
+	visibility: hidden;
+	border-radius: 3px;
+	border: 2px solid rgb(255, 60, 4);
+	padding: 20px 40px;
+	font-size: 18px;
+	color: #fff;
+	background : rgb(255, 60, 4);
+}
+.new-game:hover{
+	cursor: pointer;
+	border: 2px solid #fff;
+}
+.logo{
+	margin:  40px auto;
+	color: rgb(255, 60, 4);
+	font-size: 60px;
+	font-weight: bold;
+	text-align: center;
 }
