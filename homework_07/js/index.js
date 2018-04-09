@@ -145,6 +145,7 @@ function newGame(board, size){
 			$(nameClass).removeClass("circle-black");
 			$(nameClass).removeClass("circle-win");
 			isClick = true;
+			$(".new-game").css({"visibility" : "hidden"});
 		}
 	}
 }
