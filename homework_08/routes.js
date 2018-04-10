@@ -10,8 +10,8 @@ router.use(bodyParser.json());
 
 router.get("/rockstars", exportedFunctions.get);
 router.post("/rockstar", exportedFunctions.post);
-router.get("/rockstars/:id", exportedFunctions.getById);
-router.put("/rockstars/:id", exportedFunctions.put);
-router.delete("/rockstars/:id", exportedFunctions.delete);
+router.get("/rockstar/:id", exportedFunctions.getById);
+router.put("/rockstar/:id", exportedFunctions.put);
+router.delete("/rockstar/:id", exportedFunctions.delete);
 
 module.exports = router;

@@ -31,6 +31,10 @@ exports.post = (req, res) => {
 			return res.sendStatus(500);
 		}
 
+		if(!req.body.name || !req.body.band || !req.body.instrument){
+			return res.sendStatus(400);
+		}
+
 		try{
 			musicians = JSON.parse(data);
 		} catch (e) {
@@ -77,7 +81,7 @@ exports.getById = (req, res) => {
 			return res.sendStatus(500);
 		}
 
-		musician = musiciansJson.find( el => el.name === req.body.name && el.band === req.body.band && el.instrument === req.body.instrument);
+		musician = musicians.find( el => el.id === parseInt(req.params.id) );
 		if(musician){
 			return res.status(200).send(musician);
 		}else{
@@ -89,40 +93,34 @@ exports.getById = (req, res) => {
 exports.put = (req, res) => {
 	fs.readFile( musiciansJson, (err, data) => {
 		let musicians;
-		let musician;
+		var musician;
 
 		if(err){
 			return res.sendStatus(500);
 		}
 
-		try{
-			musicians = JSON.parse(data);
-		} catch (e) {
-			return res.sendStatus(500);
-		}
-
+		musicians = JSON.parse(data);
 		musician = musicians.find( el => el.id === parseInt(req.params.id) );
 
-		if(musician){
-			musician.name = req.body.name;
-			musician.band = req.body.band;
-			musician.instrument = req.bady.instrument;
-
-			musicians[ parseInt(req.params.id) - 1 ] = musician;
-
-			try{
-				fs.writeFile(musiciansJson, JSON.stringify(musicians), (err) => {
-        	if (err) {
-          	return res.sendStatus(500);
-        	}
-    		});
-			} catch (e) {
-				return res.sendStatus(500);
-			}
-			res.sendStatus(200);
-		}else{
+		if(!musician){
 			return res.sendStatus(404);
 		}
+
+		if(!req.body.name || !req.body.band || !req.body.instrument){
+			return res.sendStatus(400);
+		}
+			
+		musician.name = req.body.name;
+		musician.band = req.body.band;
+		musician.instrument = req.body.instrument;
+
+			fs.writeFile(musiciansJson, JSON.stringify(musicians), (err) => {
+        if (err) {
+         	return res.sendStatus(500);
+        }
+    		});
+			return res.send(musician);
+
 
 	});
 }
@@ -130,6 +128,7 @@ exports.put = (req, res) => {
 exports.delete = (req, res) => {
 	fs.readFile( musiciansJson, (err, data) => {
 		let musicians;
+		let musician;
 
 		if(err){
 			return res.sendStatus(500);
@@ -156,7 +155,7 @@ exports.delete = (req, res) => {
 			} catch (e) {
 				return res.sendStatus(500);
 			}
-			return res.status(200).send({ "message": "Musician has been successfully removed"});
+			return res.status(200).send({ "message": "Musician has been successfully removed."});
 		}else{
 			return res.sendStatus(404);
 		}
