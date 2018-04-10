@@ -1,0 +1,7 @@
+[
+  { "id": 1, "name": "David Jon Gilmour", "band": "Pink Floyd", "instrument": "multi-instrumental" },
+  { "id": 2, "name": "Roger Waters", "band": "Pink Floyd", "instrument": "guitar" },
+  { "id": 3, "name": "Jimmy Page", "band": "Led Zeppelin", "instrument": "guitar" },
+  { "id": 4, "name": "James Douglas Morrison", "band": "The Doors", "instrument": "vocals" },
+  { "id": 5, "name": "William Bruce Rose", "band": "Guns N' Roses", "instrument": "piano" }
+]
