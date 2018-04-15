@@ -8,9 +8,21 @@ module.exports = merge(common, {
 	devtool: 'source-map',
   plugins: [
     new UglifyJSPlugin({
-      sourceMap: true
+    	uglifyOptions: {
+        beautify: false,
+        compress: true,
+        comments: false,
+        mangle: false,
+        toplevel: false,
+        keep_fnames: true
+      }
     }),
-    new OptimizeCssAssetsPlugin(),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.optimize\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true
+    }),
     new WebpackBundleAnalyzerPlugin(),
-  ]
+  ],
 });
