@@ -1,0 +1,39 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+h3{
+	font-size: 30px;
+}
+p{
+	margin: auto 20px;
+	color: #2860ba;
+	font-size: 16px;
+}
+.container{
+	width: 80%;
+	margin: 20px auto;
+}
+.first-number, .second-number{
+	border: none;
+	color: #2860ba;
+	font-size: 16px;
+}
+.sign{
+	color: #2860ba;
+	font-size: 16px;
+}
+.buttons input{
+	width: 30px;
+	height: 30px;
+	float: left;
+	background-color: #2860ba;
+	color: #fff;
+}
+.result{
+	width: 60px;
+	height: 30px;
+	float: left;
+	background-color: #2860ba;
+	color: #fff;
+}
