@@ -17,6 +17,7 @@
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
+    "babel-loader": "^7.1.4",
     "create-webpack-config": "^0.2.1"
   }
 }
