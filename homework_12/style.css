@@ -1,6 +1,7 @@
 body {
     padding: 20px;
-    font: normal 14px/1.2 Arial, sans-serif; 
+    font: normal 14px/1.2 Arial, sans-serif;
+    min-width: 480px;
 }
 
 .hidden {
@@ -34,7 +35,7 @@ body {
 /***************/
 /* Scores list */
 .scores {
-    width: 40px;
+    width: 80px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -54,7 +55,7 @@ body {
     pointer-events: none;
 }
 .score-input {
-    width: 20px;
+    width: 35px;
     height: 9px;
     text-align: center;
 }
@@ -70,8 +71,61 @@ body {
 }
 .profile img {
     display: block;
-    margin: 10px auto 10px; 
+    margin: 10px auto 10px;
 }
 .profile h3 {
     margin: 0 0 10px;
+}
+
+/***********/
+/* Sort */
+.sort {
+    height: 50px;
+    border: 1px solid #ddd;
+    width: 381px;
+}
+.sort-name, .sort-score {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+}
+.sort-name {
+    width: 300px;
+    border-right: 1px solid #ddd;
+}
+.sort-score {
+    width: 80px;
+}
+.sort p {
+    margin: 17px auto;
+    padding-left: 12px;
+    display: inline-block;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 6px solid #727272;
+  position: absolute;
+  top: 15px;
+  right: 12px;
+}
+.arrow-up-active {
+  border-bottom: 6px solid #448AFF;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #727272;
+  position: absolute;
+  top: 27px;
+  right: 12px;
+}
+.arrow-down-active {
+  border-top: 6px solid #448AFF;
 }
