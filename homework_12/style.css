@@ -1,0 +1,77 @@
+body {
+    padding: 20px;
+    font: normal 14px/1.2 Arial, sans-serif; 
+}
+
+.hidden {
+    display: none !important;
+}
+
+.wrapper {
+    overflow: hidden;
+}
+
+
+/**************/
+/* Names list */
+.names {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 300px;
+    float: left;
+    margin-right: 2px;
+}
+.names li {
+    background: #00BCD4;
+    margin: 0 0 1px 0;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+}
+
+/***************/
+/* Scores list */
+.scores {
+    width: 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+    margin-right: 30px;
+}
+.scores li {
+    margin: 0 0 1px 0;
+    padding: 10px 0;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    background: #727272;
+    text-align: center;
+}
+.scores span {
+    pointer-events: none;
+}
+.score-input {
+    width: 20px;
+    height: 9px;
+    text-align: center;
+}
+
+/***********/
+/* Profile */
+.profile {
+    float: left;
+    width: 200px;
+    background: #448AFF;
+    padding: 0 10px;
+    text-align: center;
+}
+.profile img {
+    display: block;
+    margin: 10px auto 10px; 
+}
+.profile h3 {
+    margin: 0 0 10px;
+}
