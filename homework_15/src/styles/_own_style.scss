@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:500');
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
+.flex-container{
+	display: flex;
+  flex-wrap: wrap;
+}
+.block-big{
+	height: 190px;
+	width: 220px;
+	margin: 20px;
+	position: relative;
+	border-radius: 5px;
+}
+.button-add{
+	color: $text;
+	position: absolute;
+	bottom: 0;
+	p{
+		margin: 0;
+		font-size: 14px;
+		margin: 15px;
+		padding: 8px 14px;
+		background-color: $white;
+		border-radius: 4px;
+		.plus{
+			text-align: center;
+			font-size: 11px;
+		}
+	}
+}
+.block-tiny{
+	
+}
+.search-tab{
+	border: none;
+
+}
