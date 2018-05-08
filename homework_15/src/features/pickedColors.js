@@ -8,6 +8,11 @@ class PickedColors extends Component{
 
 		if( this.props.colors.length > 0 ){
 			colorBlocks = this.props.colors;
+
+			if(colorBlocks.length > 5){
+				colorBlocks = colorBlocks.slice(colorBlocks.length - 5, colorBlocks.length);
+			}
+
 			colorBlocks = colorBlocks.map( el => <TinyBlock color={el.color} id={el.id} key={el.id} callback={this.props.callback} /> );
 		} else {
 			for( let i = 0; i < 3; i++) {
