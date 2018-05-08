@@ -76,12 +76,17 @@ class App extends Component {
       index = index.map( el => el.id ).indexOf(value);
 
       let displayed = this.state.displayedColors.splice(index, 1);
+
+      index = this.state.notPickedColors;
+      index = index.map( el => el.id ).indexOf(value);
+      this.state.notPickedColors.splice(index, 1);
+
       this.state.pickedColors.push(displayed[0]);
             
       this.setState({ 
         displayedColors: this.state.displayedColors,
         pickedColors: this.state.pickedColors,
-        notPickedColors: this.state.displayedColors
+        notPickedColors: this.state.notPickedColors
       });
     }
   }
@@ -93,12 +98,14 @@ class App extends Component {
 
     let displayed = this.state.pickedColors.splice(index, 1);
     this.state.displayedColors.push(displayed[0]);
+    this.state.notPickedColors.push(displayed[0]);
     this.sortColors(this.state.displayedColors);
+    this.sortColors(this.state.notPickedColors);
             
     this.setState({ 
       displayedColors: this.state.displayedColors,
       pickedColors: this.state.pickedColors,
-      notPickedColors: this.state.displayedColors
+      notPickedColors: this.state.notPickedColors
     });    
   }
 
