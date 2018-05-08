@@ -2,10 +2,14 @@
 
 body{
 	font-family: 'Roboto', sans-serif;
+	min-width: 600px;
 }
 h2{
 	color: $placeholder;
 	margin: 20px auto;
+}
+.header{
+	height: 180px;
 }
 .container{
 	margin: 0;
@@ -41,6 +45,7 @@ h2{
 	}
 }
 .tiny-container{
+	margin-top: 20px;
 	margin-right: 40px;
 	display: inline-block;
 	float: right;
@@ -90,7 +95,7 @@ h2{
 .colors{
 	color: $placeholder;
 	font-size: 25px;
-	margin: 20px;
+	margin: 20px 30px;
 	display: inline-block;
 	float: right;
 	p{

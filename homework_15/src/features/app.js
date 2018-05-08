@@ -21,6 +21,7 @@ class App extends Component {
     
     this.addColor = this.addColor.bind(this);
     this.removeColor = this.removeColor.bind(this);
+    this.liveSearch = this.liveSearch.bind(this);
   }
 
   componentWillMount() {
@@ -113,12 +114,14 @@ class App extends Component {
 
     return (
       <div className='container'>
-        <div>
-          <SearchBar onchange={this.liveSearch.bind(this)} />
-          <PickedColors colors={this.state.pickedColors} callback={this.removeColor} />
-        </div>
-        <div>
-          <ColorsInfo amount={this.state.displayedColors.length} />
+        <div className='header'>
+          <div>
+            <SearchBar onchange={this.liveSearch} />
+            <PickedColors colors={this.state.pickedColors} callback={this.removeColor} />
+          </div>
+          <div>
+            <ColorsInfo amount={this.state.displayedColors.length} />
+          </div>
         </div>
         <div> 
           <ColorBlocks colors={this.state.displayedColors} callback={this.addColor} />
