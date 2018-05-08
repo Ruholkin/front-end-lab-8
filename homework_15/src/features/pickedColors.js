@@ -4,16 +4,14 @@ import TinyBlockEmpty from './tinyBlockEmpty';
 
 class PickedColors extends Component{
 	render(){
-		let _colors = [];
-		console.log(this.props.colors);
+		let colorBlocks = [];
+
 		if( this.props.colors.length > 0 ){
-			_colors = this.props.colors;
-			_colors = _colors.map( el => {
-				<TinyBlock color={el.color} id={el.id} key={el.id.toString()} callback={this.props.callback} />
-			});
+			colorBlocks = this.props.colors;
+			colorBlocks = colorBlocks.map( el => <TinyBlock color={el.color} id={el.id} key={el.id} callback={this.props.callback} /> );
 		} else {
 			for( let i = 0; i < 3; i++) {
-				_colors[i] = <TinyBlockEmpty key={i.toString()} id={i} />
+				colorBlocks[i] = <TinyBlockEmpty key={i.toString()} id={i} />
 			}
 		}
 
@@ -21,7 +19,7 @@ class PickedColors extends Component{
 			<div className='tiny-container'>
 				<div className='block-tiny-container'>
 					{
-						_colors
+						colorBlocks
 					}
 				</div>
 			</div>
@@ -30,3 +28,23 @@ class PickedColors extends Component{
 }
 
 export default PickedColors;
+
+// 	render(){
+// 		let colorBlocks = this.props;
+// 		colorBlocks = Array.from(colorBlocks.colors);
+
+// 		if(colorBlocks.length > 0){
+// 			colorBlocks = colorBlocks.map( el => < BigBlock color={el.color} id={el.id} key={el.tags.join(' ')} callback={this.props.callback} /> );
+// 		} else {
+// 			colorBlocks = <h2>There are no colors found</h2>
+// 		}
+
+// 		return (
+// 			<div className='flex-container'> 
+// 				{ 
+// 					colorBlocks
+// 				}
+// 			</div>
+// 		)
+// 	}
+// }

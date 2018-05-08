@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// This plugin automatically reload page on changes
+
 import { hot } from 'react-hot-loader';
 
 import ColorsInfo from './colorsInfo';
@@ -12,15 +12,15 @@ class App extends Component {
     super(props);
 
     this.state = {
-      colors: [],
       displayedColors: [],
       searchValue: '',
       pickedColors: [],
       notPickedColors: []
     },
     this.filteredColors = [];
-
+    
     this.addColor = this.addColor.bind(this);
+    this.removeColor = this.removeColor.bind(this);
   }
 
   componentWillMount() {
@@ -29,14 +29,12 @@ class App extends Component {
       .then(
         (result) => {
           this.setState({
-            colors: Array.from(result),
             displayedColors: Array.from(result),
             notPickedColors: Array.from(result)
           });
         },
         (error) => {
           this.setState({
-            colors: 0,
             displayedColors: 0,
             notPickedColors: 0
           });
@@ -94,7 +92,7 @@ class App extends Component {
     index = index.map( el => el.id ).indexOf(value);
 
     let displayed = this.state.pickedColors.splice(index, 1);
-    this.state.displayedColors.push(displayed);
+    this.state.displayedColors.push(displayed[0]);
     this.sortColors(this.state.displayedColors);
             
     this.setState({ 
