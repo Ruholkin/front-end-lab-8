@@ -51,6 +51,12 @@ body{
 
 	}
 }
+.colors{
+	color: $placeholder;
+	font-size: 25px;
+	margin: 20px;
+	display: inline-block;
+}
 ::-webkit-input-placeholder{
 	color: $placeholder;
 }

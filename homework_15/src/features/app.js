@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader';
 
 import ColorBlocks from './colorBlocks';
 import SearchBar from './searchBar';
+import ColorsInfo from './colorsInfo';
 
 class App extends Component {
 	constructor(props) {
@@ -65,12 +66,23 @@ class App extends Component {
 
   }
 
+  addColor(){
+    if(this.state.pickedColors.length < 11){
+
+    }
+  }
+
   render() {
   	
 		return (
       <div className='container'>
-        <SearchBar onchange={this.liveSearch.bind(this)}/>
-        <ColorBlocks colors={this.state.displayedColors} />
+        <div>
+          <SearchBar onchange={this.liveSearch.bind(this)}/>
+          <ColorsInfo amount={this.state.displayedColors.length} />
+        </div>
+        <div>
+          <ColorBlocks colors={this.state.displayedColors} />
+        </div>
       </div>
 		);
   }
