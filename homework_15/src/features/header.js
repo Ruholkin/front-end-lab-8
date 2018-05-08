@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
 
-class TinyBlock extends Component{
-
+class Header extends Component{
+	
 }

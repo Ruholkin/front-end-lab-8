@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BigBlock from './bigBlock';
 
-class ColorBlocks extends React.Component{
+class ColorBlocks extends Component{
 
 	render(){
 		let colorBlocks = this.props;

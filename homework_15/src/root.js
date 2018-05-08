@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 
 // import App from './app';
-import App from './features/app';
+import App from './app';
 
 // Append application to the DOM
 ReactDOM.render(

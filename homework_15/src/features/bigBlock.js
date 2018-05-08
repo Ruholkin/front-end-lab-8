@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class BigBlock extends React.Component {
+class BigBlock extends Component {
 
 	render(){
 
