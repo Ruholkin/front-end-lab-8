@@ -2,21 +2,23 @@ import React, { Component } from 'react';
 // This plugin automatically reload page on changes
 import { hot } from 'react-hot-loader';
 
-import ColorBlocks from './colorBlocks';
-import SearchBar from './searchBar';
 import ColorsInfo from './colorsInfo';
+import SearchBar from './searchBar';
+import ColorBlocks from './colorBlocks';
 
 class App extends Component {
 	constructor(props) {
     super(props);
 
     this.state = {
-      colors: {},
+      colors: [],
       displayedColors: [],
       searchValue: '',
       pickedColors: []
     },
     this.filteredColors = [];
+
+    this.addColor = this.addColor.bind(this);
   }
 
   componentWillMount() {
@@ -25,8 +27,8 @@ class App extends Component {
       .then(
         (result) => {
           this.setState({
-            colors: result,
-            displayedColors: result
+            colors: Array.from(result),
+            displayedColors: Array.from(result)
           });
         },
         (error) => {
@@ -42,11 +44,13 @@ class App extends Component {
     this.setState({ displayedColors: this.filteredColors })
   }
 
-  bubbleSort(value_a, value_b){
-    if( value_a.id > value_b.id){
-      return true;
+  compareSort(value_a, value_b){
+    if( value_a.id > value_b.id ){
+      return 1;
+    } else if ( value_a.id < value_b.id ) {
+      return -1;
     }
-    return false;
+    return 0;
   }
 
   liveSearch(evt){
@@ -66,22 +70,31 @@ class App extends Component {
 
   }
 
-  addColor(){
-    if(this.state.pickedColors.length < 11){
+  addColor(value){
+    if(this.state.pickedColors.length < 10){
+      let index = this.state.displayedColors;
+      index = index.map( el => el.id ).indexOf(value);
 
+      let displayed = this.state.displayedColors.splice(index, 1);
+      this.state.pickedColors.push(displayed);
+            
+      this.setState({ 
+        displayedColors: this.state.displayedColors,
+        pickedColors: this.state.pickedColors
+      });
     }
   }
 
   render() {
-  	
-		return (
+
+    return (
       <div className='container'>
         <div>
           <SearchBar onchange={this.liveSearch.bind(this)}/>
           <ColorsInfo amount={this.state.displayedColors.length} />
         </div>
-        <div>
-          <ColorBlocks colors={this.state.displayedColors} />
+        <div> 
+          <ColorBlocks colors={this.state.displayedColors} callback={this.addColor} />
         </div>
       </div>
 		);

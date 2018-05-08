@@ -9,7 +9,7 @@ class ColorBlocks extends Component{
 
 		return (
 			<div className='flex-container'> 
-				{ colorBlocks = colorBlocks.map( el => < BigBlock color={el.color} id={el.id} key={el.id.toString()} tags={el.tags.join(' ')} /> ) }
+				{ colorBlocks = colorBlocks.map( el => < BigBlock color={el.color} id={el.id} key={el.tags.join(' ')} callback={this.props.callback} /> ) }
 			</div>
 		)
 	}
