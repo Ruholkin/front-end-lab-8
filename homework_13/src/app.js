@@ -3,7 +3,10 @@ let myApp = angular.module('myApp', ['data'])
     $scope.allPosts = posts;
     $scope.displayedPosts = posts;
 
+    $scope.isAdding = false;
     $scope.categories = ['All'];
+    $scope.errorClass = '';
+    $scope.defaultPhoto = 'assets/default.jpg';
 
     $scope.getUniqueCategories = ( array, categories ) => {
     	let unique = categories.map( el => [].concat(el.categories)); 
@@ -31,8 +34,48 @@ let myApp = angular.module('myApp', ['data'])
     	}
     };
 
-    $scope.sortingByTitle = () => {
-    	let title = $scope.search.toLowerCase();
-    	$scope.displayedPosts = $scope.allPosts.filter( el => el.title.toLowerCase().indexOf(title) !== -1);
+    $scope.addingPost = () => {
+    	$scope.isAdding = true;
+    };
+
+    $scope.cancel = () => {
+    	$scope.isAdding = false;
+    };
+
+    $scope.createPost = () => {
+    	if( $scope.title && $scope.newCategories && $scope.description ) {
+    		$scope.errorClass = '';
+    		let newPhoto = $scope.photo || $scope.defaultPhoto;
+    		let newPost = {
+    			title: $scope.title,
+    			description: $scope.description,
+    			categories: $scope.newCategories.split(/[ ,]+/),
+    			url: newPhoto,
+    			isEditing: false
+    		};
+
+    		$scope.allPosts.push(newPost);
+    		$scope.isAdding = false;
+
+    		$scope.title = '';
+    		$scope.newCategories = '';
+    		$scope.description = '';
+    		$scope.photo = '';
+    	} else {
+    		$scope.errorClass += 'errorClass';
+    	}    	
+    };
+
+    $scope.postEditing = (post) => {
+    	if( post.title && post.description && post.categories ){
+    		post.categories = post.categories.toString().split(/[ ,]+/);
+    		post.isEditing = false;
+    		if( !post.url ) {
+    			post.url = $scope.defaultPhoto;
+    		}
+    		$scope.errorClass = '';
+    	}else {
+    		$scope.errorClass += 'errorClass';
+    	}
     };
 });
