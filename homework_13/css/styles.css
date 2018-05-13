@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+body{
+	font-family: 'Roboto', sans-serif;
+	min-width: 800px;
+	margin: 0;
+	padding: 0;
+}
+h1{
+	margin: 0;
+	padding: 0;
+}
+h3{
+	margin: 0;
+	padding: 0;
+	color: #dfdbe9;
+}
+ul{
+	list-style-type: none;
+	display: inline-block;
+}
+li{
+	display: inline;
+	color: #6b628a;
+}
+input:focus{
+	outline-width: 0;
+}
+::-webkit-input-placeholder{
+	color: #dfdbe9;
+}
+.container{
+	margin: 0;
+	padding: 0;
+}
+.header{
+	height:  250px;
+	width: 100%;
+	background-image: url("../assets/background.jpg");
+  background-repeat: repeat;
+  border-bottom: 5px solid #6b628a;
+  margin: 0;
+  padding: 0;
+}
+.blog{
+	background-color: #6b628a;
+	color: #fff;
+	margin: -40px auto ;
+	padding: 20px;
+	width:  150px;
+	text-align: center;
+}
+.blog img{
+}
+.aside{
+	background-color: #dfdbe9;
+	display: flex;
+}
+.aside input{
+	border: none;
+	width: 100%;
+}
+.search-bar{
+	width: 80%;
+	margin: 50px auto 20px auto;
+}
+.search-bar input{
+	width: 100%;
+	border: none;
+	height: 20px;
+	font-size: 16px;
+}
+.search-bar-tags{
+	color: #6b628a;
+	font-size: 13px;
+	text-align: center;
+}
+.search-bar-tags span{
+	margin: auto 7px;
+}
+.search-bar-tags span:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.post-container{
+	margin-top: 50px;
+}
+.post{
+	width: 80%;
+	margin: 10px auto;
+	background-color: #dfdbe9;
+}
+.post-img-container{
+	width: 95%;
+	margin: auto;
+	position: relative;
+}
+.post-img{
+	max-width: 100%;
+	max-height: 100%;
+	margin: 20px auto auto auto;
+	padding: 0;
+}
+.post-title-container{
+	position: absolute;
+	height: 70px;
+	width: 100%;	
+	bottom: 4px;
+	background-color: rgba(255, 255, 255, 0.7);
+	text-align: center;
+}
+.post-title{	
+	color: #6b628a;
+	font-size: 15pt;
+	font-weight: bold;
+}
+.post-description{
+	margin: 0;
+	padding: 20px;
+}
+.post-description p{
+	margin: 0;
+	padding: 0;
+}
+.post-tags{
+	color: #fff;
+	margin: auto 20px;
+	padding-bottom: 10px;
+	font-size: 13px;
+}
+.post-tags p{
+	margin: 0;
+}
+.post-tags span{
+	margin: auto 7px;
+}
+.post-tags span:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.post-button-container{
+	padding:  20px;
+	position: relative;
+}
+.post-button{
+	position: absolute;
+	border-radius: 20px;
+	border: 2px solid #fff;
+	color: #fff;
+	background-color: #6b628a;
+	width: 100px;
+	height: 30px;
+	right: 0;
+	bottom: 0;
+	margin: 20px;
+}
+.post-button:hover{
+	border-color: #6b628a;
+	color: #6b628a;
+	background-color: #fff;
+}

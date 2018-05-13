@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Homework 13</title>
+  <link rel='stylesheet' href='css/styles.css'>
+</head>
+<body ng-app='myApp' ng-controller='DemoController as demo'>
+  <div class='header'> </div>
+  <div class='blog'>
+    <h1>MY BLOG</h1>
+  </div>
+
+	<div class='search-bar'>
+		<input type='text' placeholder='Search by title' ng-model="search" ng-change='sortingByTitle()' />
+		<p class='search-bar-tags'>
+			<span ng-repeat='category in categories' ng-click='sortingByCategories(category)'>{{ category }}</span>
+		</p>
+	</div>
+
+	<div class='post-container'>
+	  <div class='post' ng-repeat='post in displayedPosts' >
+	  	<div class='post-img-container'>
+	  		<img class='post-img' ng-src='{{ post.url }}'>
+	  		<div class='post-title-container'>
+	  			<p class='post-title'>{{ post.title }}</p>
+	  		</div>
+	  	</div>
+	  	<div class='post-description'>
+	  		<p>{{ post.description }}</p>
+	  	</div>
+	  	<div class='post-tags'>
+	  		<p>Tags: 
+	  			<span ng-repeat='category in post.categories' ng-click='sortingByCategories(category)'>{{ category }}</span>
+	  		</p>
+	  	</div>
+	  	<div class='post-button-container'>
+	  		<input type='button' class='post-button' value='Edit' />
+	  	</div>
+	  </div>
+	</div>
+
+	<script src = 'lib/angular.min.js' type='text/javascript'></script>
+  <script src='src/data.js' type='text/javascript'></script>
+  <script src='src/app.js' type='text/javascript'></script>
+  
+</body>
+</html>
